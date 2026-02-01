@@ -3,4 +3,4 @@ layout: single
 title: CV
 ---
 
-Coming soon.
+Coming soon...
