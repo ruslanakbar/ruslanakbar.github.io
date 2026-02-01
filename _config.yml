@@ -1,29 +1,52 @@
-remote_theme: "mmistakes/minimal-mistakes"
-plugins:
-  - jekyll-remote-theme
-  - jekyll-feed
-  - jekyll-seo-tag
-  - jekyll-sitemap
+# ===============================
+# Site settings
+# ===============================
 
 title: Ruslan Akbar
 name: Ruslan Akbar
 description: >
-  PhD Researcher in Mechanical Engineering |
+  PhD student in Mechanical Engineering |
   AI-driven Computational Modeling |
   CFD • Machine Learning • Uncertainty Quantification
 
+# ===============================
+# Theme
+# ===============================
+
+remote_theme: "mmistakes/minimal-mistakes"
 minimal_mistakes_skin: dark
+
+# ===============================
+# Plugins (CRITICAL)
+# ===============================
+
+plugins:
+  - jekyll-remote-theme
+  - jekyll-include-cache
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# ===============================
+# Author profile (sidebar)
+# ===============================
 
 author:
   name: Ruslan Akbar
   avatar: "/assets/images/profile.jpg"
   bio: >
-    PhD student in Mechanical Engineering focusing on
+    PhD researcher in Mechanical Engineering focusing on
     AI-enabled computational modeling, CFD, and uncertainty-aware
-    intelligent systems.
+    intelligent systems. Interested in sustainable energy,
+    autonomous systems, and data-driven physics.
   location: "Baton Rouge, USA"
   employer: "Louisiana State University"
   github: ruslanakbar
+  linkedin: ruslan-akbar
+
+# ===============================
+# Defaults (page layout)
+# ===============================
 
 defaults:
   - scope:
@@ -34,7 +57,9 @@ defaults:
       author_profile: true
       classes: wide
 
-plugins:
-  - jekyll-feed
-  - jekyll-seo-tag
-  - jekyll-sitemap
+# ===============================
+# Markdown & syntax highlighting
+# ===============================
+
+markdown: kramdown
+highlighter: rouge
