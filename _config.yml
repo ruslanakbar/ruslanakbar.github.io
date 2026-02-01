@@ -6,7 +6,7 @@ title: Ruslan Akbar
 name: Ruslan Akbar
 description: >
   PhD student in Mechanical Engineering |
-  AI-driven Computational Modeling |
+  Computational Modeling |
   CFD • Machine Learning • Uncertainty Quantification
 
 # ===============================
@@ -36,13 +36,13 @@ author:
   avatar: "/assets/images/profile.jpg"
   bio: >
     PhD researcher in Mechanical Engineering focusing on
-    AI-enabled computational modeling, CFD, and uncertainty-aware
+    Computational modeling, CFD, and uncertainty-aware
     intelligent systems. Interested in sustainable energy,
     autonomous systems, and data-driven physics.
   location: "Baton Rouge, USA"
   employer: "Louisiana State University"
   github: ruslanakbar
-  linkedin: ruslan-akbar
+  linkedin: ruslanakbarzade
 
 # ===============================
 # Defaults (page layout)
