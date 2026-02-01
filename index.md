@@ -5,14 +5,14 @@ title: ""
 ---
 
 I am a PhD student in Mechanical Engineering with a strong focus on
-**AI-driven computational modeling**, **CFD**, and **uncertainty quantification**.
+**Data driven computational modeling**, **CFD**, and **uncertainty quantification**.
 
 My work bridges physics-based simulation and machine learning to develop
 reliable and intelligent models for complex engineering systems.
 
-### Research Interests
-- AI & Machine Learning for Physical Systems  
-- Computational Fluid Dynamics (CFD)  
+### Research Interests 
+- Computational Fluid Dynamics (CFD)
+- AI & Machine Learning for Physical Systems 
 - Uncertainty Quantification  
 - Sustainable Energy  
 
