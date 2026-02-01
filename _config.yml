@@ -1,0 +1,35 @@
+remote_theme: "mmistakes/minimal-mistakes"
+
+title: Ruslan Akbar
+name: Ruslan Akbar
+description: >
+  PhD Researcher in Mechanical Engineering |
+  AI-driven Computational Modeling |
+  CFD • Machine Learning • Uncertainty Quantification
+
+minimal_mistakes_skin: dark
+
+author:
+  name: Ruslan Akbar
+  avatar: "/assets/images/profile.jpg"
+  bio: >
+    PhD student in Mechanical Engineering focusing on
+    AI-enabled computational modeling, CFD, and uncertainty-aware
+    intelligent systems.
+  location: "Baton Rouge, USA"
+  employer: "Louisiana State University"
+  github: ruslanakbar
+
+defaults:
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+      classes: wide
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
