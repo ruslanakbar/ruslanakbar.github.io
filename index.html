@@ -18,7 +18,7 @@ home: true
     <img class="home__portrait" src="{{ site.author.avatar | relative_url }}" alt="Portrait of {{ site.author.name }}" width="168" height="168">
     <div class="home__hero-text">
       <p class="home__hello" data-home-hello>Hello, and welcome.</p>
-      <h1 class="home__greeting">{{ home.greeting }}</h1>
+      <h1 class="home__greeting">{{ home.greeting }}&nbsp;<button type="button" class="home__wave" data-home-wave data-gestures="{{ home.gestures | jsonify | escape }}" aria-label="Wave back">{{ home.gestures | first }}</button></h1>
       <p class="home__lead">{{ home.lead }}</p>
       <p class="home__probably">
         <span class="home__sr">Right now I'm probably {{ home.probably | first }}</span>

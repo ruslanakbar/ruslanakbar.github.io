@@ -1,7 +1,11 @@
 # All the text on the home page (index.html) lives here.
 # Edit freely: the layout picks up whatever you write.
 
-greeting: "Hi, I'm Ruslan."
+greeting: "Hi, I'm Ruslan"
+
+# The hand after the greeting. The first one waves on its own;
+# clicking it steps through the rest.
+gestures: ["👋", "✌️", "🤙", "👊", "🙌"]
 lead: "I'm curious about physics, computation, and what we can learn from both."
 
 # Typed one after another, after the words "Right now I'm probably".

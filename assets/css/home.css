@@ -61,6 +61,39 @@
   text-wrap: balance;
 }
 
+/* the waving hand after the greeting; click it for other gestures */
+.home__wave {
+  appearance: none;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 0.86em;
+  line-height: 1;
+  color: inherit;
+  cursor: pointer;
+  transform-origin: 70% 75%;
+  animation: home-wave 5s ease-in-out 0.5s infinite;
+  transition: scale 0.12s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.home__wave:hover { animation-duration: 1.8s; animation-delay: 0s; }
+.home__wave:active { scale: 0.82; }
+.home__wave:focus-visible { outline: 2px solid var(--cm-accent); outline-offset: 6px; border-radius: 8px; }
+
+/* a few quick waves, then rest until the next cycle */
+@keyframes home-wave {
+  0%, 36%, 100% { transform: rotate(0deg); }
+  6% { transform: rotate(16deg); }
+  12% { transform: rotate(-9deg); }
+  18% { transform: rotate(16deg); }
+  24% { transform: rotate(-5deg); }
+  30% { transform: rotate(11deg); }
+}
+
 .home .home__lead {
   margin: 0.55em 0 0.7em;
   font-size: 1.2em;
@@ -356,10 +389,12 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .home__wave,
   .home__cursor,
   .home__pulse,
   .home__typing i,
   .home__log .home__bubble-row { animation: none; }
+  .home__wave,
   .home__card,
   .home__card-arrow,
   .home__chip { transition: none; }

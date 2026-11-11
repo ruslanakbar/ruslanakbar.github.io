@@ -1,5 +1,5 @@
 /* Home page behaviour: a greeting that knows the time (and whether you have been
-   here before), a typed "right now I'm probably..." line, and the small
+   here before), a waving hand that answers clicks with other gestures, a typed "right now I'm probably..." line, and the small
    conversation. The words themselves live in _data/home.yml. */
 (function () {
   'use strict';
@@ -26,6 +26,21 @@
       text = part + (returning ? ', and welcome back.' : ', and welcome.');
     }
     el.textContent = text;
+  }
+
+  /* ---------- the hand ---------- */
+
+  function wave() {
+    var hand = document.querySelector('[data-home-wave]');
+    if (!hand) return;
+    var gestures;
+    try { gestures = JSON.parse(hand.getAttribute('data-gestures')); } catch (e) { return; }
+    if (!gestures || gestures.length < 2) return;
+    var which = 0;
+    hand.addEventListener('click', function () {
+      which = (which + 1) % gestures.length;
+      hand.textContent = gestures[which];
+    });
   }
 
   /* ---------- "right now I'm probably ..." ---------- */
@@ -109,7 +124,7 @@
     });
   }
 
-  function init() { greet(); typeStatus(); chat(); }
+  function init() { greet(); wave(); typeStatus(); chat(); }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
