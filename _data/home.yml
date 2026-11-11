@@ -8,7 +8,10 @@ greeting: "Hi, I'm Ruslan"
 gestures: ["👋", "✌️", "🤙", "👊", "🙌"]
 lead: "I'm curious about physics, computation, and what we can learn from both."
 
-# Typed one after another, after the words "Right now I'm probably".
+# The typed line after the words "Right now I'm probably".
+# `probably_often` is shown first and comes back after every one of the others,
+# so it is on screen about half the time. Delete it to give every line equal time.
+probably_often: "wondering if the singularity is nearer."
 probably:
   - "waiting for a simulation to converge."
   - "debugging a boundary condition."

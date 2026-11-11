@@ -50,7 +50,16 @@
     if (!el) return;
     var phrases;
     try { phrases = JSON.parse(el.getAttribute('data-phrases')); } catch (e) { return; }
-    if (!phrases || phrases.length < 2 || REDUCED) return;
+    if (!phrases) return;
+
+    // The favourite line goes first and returns after every other line.
+    var often = el.getAttribute('data-often');
+    if (often) {
+      var mixed = [];
+      phrases.forEach(function (phrase) { mixed.push(often, phrase); });
+      phrases = mixed;
+    }
+    if (phrases.length < 2 || REDUCED) return;
 
     var which = 0;
     function type(n) {

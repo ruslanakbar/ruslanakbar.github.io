@@ -21,8 +21,9 @@ home: true
       <h1 class="home__greeting">{{ home.greeting }}&nbsp;<button type="button" class="home__wave" data-home-wave data-gestures="{{ home.gestures | jsonify | escape }}" aria-label="Wave back">{{ home.gestures | first }}</button></h1>
       <p class="home__lead">{{ home.lead }}</p>
       <p class="home__probably">
-        <span class="home__sr">Right now I'm probably {{ home.probably | first }}</span>
-        <span aria-hidden="true"><span class="home__prompt">&gt;</span> Right now I'm probably <span data-home-typed data-phrases="{{ home.probably | jsonify | escape }}">{{ home.probably | first }}</span><span class="home__cursor"></span></span>
+        {% assign first_status = home.probably_often | default: home.probably.first %}
+        <span class="home__sr">Right now I'm probably {{ first_status }}</span>
+        <span aria-hidden="true"><span class="home__prompt">&gt;</span> Right now I'm probably <span data-home-typed data-often="{{ home.probably_often | escape }}" data-phrases="{{ home.probably | jsonify | escape }}">{{ first_status }}</span><span class="home__cursor"></span></span>
       </p>
     </div>
   </section>
