@@ -58,6 +58,14 @@ defaults:
       classes: wide
 
 # ===============================
+# Extras
+# ===============================
+
+# Fluid-style trail behind the mouse pointer (assets/js/cursor-wake.js).
+# Set to false to switch it off.
+cursor_wake: true
+
+# ===============================
 # Markdown & syntax highlighting
 # ===============================
 

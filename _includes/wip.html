@@ -1,0 +1,52 @@
+{% comment %}
+  "In progress" placeholder used by pages that have no real content yet.
+
+  A page opts in by putting `{% include wip.html %}` in its body and a `wip:`
+  block in its front matter:
+
+    wip:
+      scene: flow | loss | posterior | draft | latex | diverged
+      window: text shown in the fake window title bar
+      headline: one-liner under the animation
+      note: a sentence or two (Markdown allowed)
+      progress: 0-100
+      progress_label: text next to the progress bar
+
+  When the page is ready, delete the `wip:` block and the include line and
+  write the content as normal Markdown.
+{% endcomment %}
+{% assign wip = page.wip %}
+<div class="wip" data-wip-scene="{{ wip.scene | default: 'latex' }}">
+  <p class="wip__badge"><span class="wip__pulse" aria-hidden="true"></span>{{ wip.badge | default: "In progress" }}</p>
+
+  <div class="wip__window">
+    <div class="wip__bar" aria-hidden="true">
+      <span class="wip__dots"><i></i><i></i><i></i></span>
+      <span class="wip__file">{{ wip.window | default: "untitled" }}</span>
+    </div>
+    <div class="wip__stage" data-wip-stage>
+      <noscript><p class="wip__nojs">The animation needs JavaScript. The page, sadly, needs free time.</p></noscript>
+    </div>
+    <div class="wip__hud" data-wip-hud aria-hidden="true">&nbsp;</div>
+  </div>
+
+  <p class="wip__headline">{{ wip.headline | default: "In progress." }}</p>
+  <div class="wip__note">{{ wip.note | default: "Will add when I find time again." | markdownify }}</div>
+
+  {% if wip.progress %}
+  <div class="wip__progress">
+    <div class="wip__progress-text">
+      <span>{{ wip.progress_label | default: "Progress" }}</span>
+      <span>{{ wip.progress }}%</span>
+    </div>
+    <div class="wip__track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ wip.progress }}" aria-label="{{ wip.progress_label | default: 'Progress' | escape }}">
+      <div class="wip__fill" style="width: {{ wip.progress }}%"></div>
+    </div>
+  </div>
+  {% endif %}
+
+  <p class="wip__actions">
+    <a class="btn btn--primary" href="{{ '/' | relative_url }}">&larr; {{ wip.back_label | default: "Back to the parts that exist" }}</a>
+  </p>
+</div>
+<script src="{{ '/assets/js/wip.js' | relative_url }}" defer></script>

@@ -1,0 +1,11 @@
+<!-- start custom head snippets -->
+
+<!-- styles for the "in progress" placeholder pages (see _includes/wip.html) -->
+<link rel="stylesheet" href="{{ '/assets/css/wip.css' | relative_url }}">
+
+<!-- cursor wake effect; set `cursor_wake: false` in _config.yml to switch it off -->
+{% unless site.cursor_wake == false %}
+<script src="{{ '/assets/js/cursor-wake.js' | relative_url }}" defer></script>
+{% endunless %}
+
+<!-- end custom head snippets -->
