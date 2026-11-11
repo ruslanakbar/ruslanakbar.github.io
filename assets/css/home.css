@@ -143,6 +143,53 @@
   color: var(--home-dim);
 }
 
+/* GitHub / LinkedIn / CV buttons */
+.home .home__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6em;
+  margin: 1.1em 0 0;
+}
+
+.home__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  min-height: max(2.75em, 44px);
+  padding: 0 1.15em 0 1em;
+  border: 1px solid var(--home-line);
+  border-radius: 999px;
+  background: var(--home-surface);
+  font-size: 0.9em;
+  font-weight: bold;
+  text-decoration: none;
+  transition: border-color 0.15s, background-color 0.15s, color 0.15s, transform 0.15s;
+}
+
+/* the theme colours links; these read as buttons, so use the text colour */
+.home a.home__link,
+.home a.home__link:visited { color: #eaeaea; }
+
+.home__link svg {
+  flex: none;
+  width: 1.4em;
+  height: 1.4em;
+  color: var(--cm-accent);
+  transition: color 0.15s;
+}
+
+.home a.home__link:hover,
+.home a.home__link:focus-visible {
+  border-color: var(--cm-accent);
+  background: var(--cm-accent);
+  color: var(--cm-on-accent);
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+.home__link:hover svg,
+.home__link:focus-visible svg { color: currentColor; }
+
 /* ---------- the conversation ---------- */
 
 .home__bubble-row {
@@ -395,9 +442,13 @@
   .home__typing i,
   .home__log .home__bubble-row { animation: none; }
   .home__wave,
+  .home__link,
+  .home__link svg,
   .home__card,
   .home__card-arrow,
   .home__chip { transition: none; }
+  .home a.home__link:hover,
+  .home a.home__link:focus-visible,
   .home__card:hover,
   .home__card:focus-visible { transform: none; }
 }
