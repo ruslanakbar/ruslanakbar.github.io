@@ -1,0 +1,95 @@
+# All the text on the home page (index.html) lives here.
+# Edit freely: the layout picks up whatever you write.
+
+greeting: "Hi, I'm Ruslan."
+lead: "I'm curious about physics, computation, and what we can learn from both."
+
+# Typed one after another, after the words "Right now I'm probably".
+probably:
+  - "waiting for a simulation to converge."
+  - "debugging a boundary condition."
+  - "reading just one more paper."
+  - "tuning a learning rate."
+  - "making coffee."
+
+# Paragraphs under the greeting. Markdown is allowed.
+intro:
+  - >
+    I'm a PhD student in Mechanical Engineering at Louisiana State University.
+    I build computational models of physical systems, and I'm increasingly
+    interested in how machine learning and reduced-order methods can help us
+    understand complex processes.
+  - >
+    Outside my immediate research, I enjoy exploring ideas across artificial
+    intelligence, autonomous systems and computational science.
+  - >
+    This site is my research notebook: work in progress, experiments, and
+    questions I'm still trying to answer.
+
+# The small conversation. Each option is a button; picking one shows its reply.
+chat:
+  question: "So, what brings you here?"
+  options:
+    - id: researcher
+      label: "I'm a researcher"
+      reply: >
+        Then we probably have something to talk about. The research page is the
+        best place to start, and the publications list sits right next to it.
+        If your work overlaps with mine, I'd love to hear about it.
+      links:
+        - { label: "Research", url: "/research/" }
+        - { label: "Publications", url: "/publications/" }
+        - { label: "Say hello on LinkedIn", url: "linkedin" }
+    - id: collaborator
+      label: "I'm hiring, or looking for a collaborator"
+      reply: >
+        Glad you're here. My CV has the conventional summary, my code lives on
+        GitHub, and LinkedIn is the fastest way to reach me.
+      links:
+        - { label: "CV", url: "/cv/" }
+        - { label: "GitHub", url: "github" }
+        - { label: "LinkedIn", url: "linkedin" }
+    - id: student
+      label: "I'm a student"
+      reply: >
+        Welcome! Teaching notes and course materials will live on the teaching
+        page, and the blog is where I'll write up what I learn along the way.
+        If you're finding your way into simulation or machine learning, say hello.
+      links:
+        - { label: "Teaching", url: "/teaching/" }
+        - { label: "Blog", url: "/blog/" }
+    - id: curious
+      label: "Just curious"
+      reply: >
+        My favourite kind of visitor. Wander through the projects, poke at the
+        animations, and try the colormap switcher in the corner. Ask it for jet.
+        Several times.
+      links:
+        - { label: "Projects", url: "/projects/" }
+        - { label: "Blog", url: "/blog/" }
+
+now:
+  title: "What I'm working on"
+  status: "Research in progress"
+  text: >
+    Computational modeling of reactive physical systems, and looking for more
+    efficient ways to represent their complex dynamics.
+  link: { label: "More on the research page", url: "/research/" }
+  topics:
+    - "computational fluid dynamics"
+    - "machine learning for physical systems"
+    - "reduced-order modeling"
+    - "uncertainty quantification"
+
+elsewhere:
+  title: "Elsewhere on this site"
+  cards:
+    - { title: "Research", url: "/research/", text: "What I'm trying to figure out, and how." }
+    - { title: "Projects", url: "/projects/", text: "Things I've built, simulated, or broken." }
+    - { title: "Publications", url: "/publications/", text: "The peer-reviewed version of events." }
+    - { title: "Teaching", url: "/teaching/", text: "Notes and materials from the classroom." }
+    - { title: "Blog", url: "/blog/", text: "Technical notes, and occasional thoughts on engineering and AI." }
+    - { title: "CV", url: "/cv/", text: "The conventional summary, for when you need one." }
+  note: "Fair warning: some of these are still under construction. They'll tell you so themselves."
+
+signoff: "Thanks for stopping by."

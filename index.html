@@ -1,0 +1,111 @@
+---
+layout: splash
+title: ""
+permalink: /
+home: true
+---
+{% comment %}
+  Home page. The words live in _data/home.yml; this file is only the layout.
+  Styles: assets/css/home.css. Behaviour: assets/js/home.js.
+{% endcomment %}
+{% assign home = site.data.home %}
+{% assign github_url = "https://github.com/" | append: site.author.github %}
+{% assign linkedin_url = "https://www.linkedin.com/in/" | append: site.author.linkedin %}
+
+<div class="home">
+
+  <section class="home__hero">
+    <img class="home__portrait" src="{{ site.author.avatar | relative_url }}" alt="Portrait of {{ site.author.name }}" width="168" height="168">
+    <div class="home__hero-text">
+      <p class="home__hello" data-home-hello>Hello, and welcome.</p>
+      <h1 class="home__greeting">{{ home.greeting }}</h1>
+      <p class="home__lead">{{ home.lead }}</p>
+      <p class="home__probably">
+        <span class="home__sr">Right now I'm probably {{ home.probably | first }}</span>
+        <span aria-hidden="true"><span class="home__prompt">&gt;</span> Right now I'm probably <span data-home-typed data-phrases="{{ home.probably | jsonify | escape }}">{{ home.probably | first }}</span><span class="home__cursor"></span></span>
+      </p>
+    </div>
+  </section>
+
+  <section class="home__about">
+    {% for paragraph in home.intro %}{{ paragraph | markdownify }}{% endfor %}
+    <p class="home__facts">
+      <span>{{ site.author.employer }}</span>
+      <span>{{ site.author.location }}</span>
+      <a href="{{ github_url }}">GitHub</a>
+      <a href="{{ linkedin_url }}">LinkedIn</a>
+      <a href="{{ '/cv/' | relative_url }}">CV</a>
+    </p>
+  </section>
+
+  <section class="home__chat" data-home-chat>
+    <div class="home__bubble-row">
+      <img class="home__mini" src="{{ site.author.avatar | relative_url }}" alt="" width="36" height="36">
+      <h2 class="home__bubble home__bubble--me">{{ home.chat.question }}</h2>
+    </div>
+
+    <div class="home__chips" role="group" aria-label="{{ home.chat.question | escape }}">
+      {% for option in home.chat.options %}
+      <button type="button" class="home__chip" data-reply="{{ option.id }}" aria-pressed="false" hidden>{{ option.label }}</button>
+      {% endfor %}
+    </div>
+
+    <div class="home__log" data-home-log aria-live="polite"></div>
+
+    {% comment %} Without JavaScript these simply read as a list of answers. {% endcomment %}
+    <div class="home__replies" data-home-replies>
+      {% for option in home.chat.options %}
+      <div class="home__reply" data-reply-for="{{ option.id }}">
+        <p class="home__reply-label">{{ option.label }}</p>
+        <div class="home__reply-body">
+          <p>{{ option.reply | strip }}</p>
+          <p class="home__reply-links">
+            {% for link in option.links %}
+              {% if link.url == "github" %}{% assign href = github_url %}
+              {% elsif link.url == "linkedin" %}{% assign href = linkedin_url %}
+              {% else %}{% assign href = link.url | relative_url %}{% endif %}
+              <a href="{{ href }}">{{ link.label }}</a>
+            {% endfor %}
+          </p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="home__now">
+    <div class="home__section-head">
+      <h2>{{ home.now.title }}</h2>
+      <span class="home__status"><span class="home__pulse" aria-hidden="true"></span>{{ home.now.status }}</span>
+    </div>
+    <p class="home__now-text">{{ home.now.text | strip }}</p>
+    <ul class="home__topics">
+      {% for topic in home.now.topics %}<li>{{ topic }}</li>{% endfor %}
+    </ul>
+    <p class="home__more"><a href="{{ home.now.link.url | relative_url }}">{{ home.now.link.label }} &rarr;</a></p>
+  </section>
+
+  <section class="home__elsewhere">
+    <div class="home__section-head">
+      <h2>{{ home.elsewhere.title }}</h2>
+    </div>
+    <ul class="home__cards">
+      {% for card in home.elsewhere.cards %}
+      <li>
+        <a class="home__card" href="{{ card.url | relative_url }}">
+          <span class="home__card-title">{{ card.title }} <span class="home__card-arrow" aria-hidden="true">&rarr;</span></span>
+          <span class="home__card-text">{{ card.text }}</span>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    <p class="home__note">{{ home.elsewhere.note }}</p>
+  </section>
+
+  <p class="home__signoff">
+    {{ home.signoff }}
+    <span class="home__ps home__ps--mouse">P.S. Move your mouse around: this page is a bit of a fluid.</span>
+  </p>
+
+</div>
+<script src="{{ '/assets/js/home.js' | relative_url }}" defer></script>
