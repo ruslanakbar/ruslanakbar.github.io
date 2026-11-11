@@ -5,16 +5,26 @@
 
   var REDUCED = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 
+  // Fixed colours. Accent colours come from the colormap switcher
+  // (assets/js/colormap.js) when it is loaded, see accent()/ramp() below.
   var COLOR = {
     bg: '#1a1e26',
     page: '#252a34',
     text: '#eaeaea',
-    teal: '0, 173, 181',
-    ice: '190, 240, 242',
-    amber: '255, 200, 87',
     red: '255, 107, 107',
     white: '234, 234, 234'
   };
+  var FALLBACK = { accent: '0, 173, 181', warm: '255, 200, 87' };
+
+  // "r, g, b" for a named role: 'accent' or 'warm'.
+  function accent(role) {
+    return window.Colormap ? window.Colormap.rgb(role) : FALLBACK[role];
+  }
+  // "r, g, b" for a data value u in 0-1, taken from the active colormap.
+  function ramp(u) {
+    return window.Colormap ? window.Colormap.ramp(u) : FALLBACK.accent;
+  }
+
   var MONO = '11px Monaco, Consolas, "Lucida Console", monospace';
 
   function rgba(c, a) { return 'rgba(' + c + ', ' + a + ')'; }
@@ -23,6 +33,8 @@
     var u = 1 - Math.random(), v = Math.random();
     return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
   }
+
+  function onColormap(redraw) { document.addEventListener('colormapchange', redraw); }
 
   /* ---------- canvas plumbing ---------- */
 
@@ -125,21 +137,23 @@
       ctx.lineCap = 'round';
       ctx.lineWidth = 1.4;
 
-      // Bucket by speed so each bucket/age pair is a single stroke.
-      var tints = [COLOR.teal, COLOR.teal, COLOR.ice], strength = [0.45, 0.85, 1];
-      for (b = 0; b < 3; b++) {
+      // Colour by speed, like a velocity-magnitude plot. Speeds are bucketed
+      // so each bucket/age pair is a single stroke.
+      var BUCKETS = 5;
+      for (b = 0; b < BUCKETS; b++) {
+        var tint = ramp(b / (BUCKETS - 1));
         for (k = 0; k < TRAIL - 1; k++) {
           ctx.beginPath();
           for (i = 0; i < particles.length; i++) {
             var p = particles[i];
-            var bucket = p.speed < 0.8 * U ? 0 : (p.speed < 1.2 * U ? 1 : 2);
+            var bucket = Math.max(0, Math.min(BUCKETS - 1, Math.floor((p.speed / U - 0.45) / 1.1 * BUCKETS)));
             if (bucket !== b) continue;
             var j = p.trail.length - 2 * (k + 2);
             if (j < 0) continue;
             ctx.moveTo(ox + p.trail[j] * scale, oy + p.trail[j + 1] * scale);
             ctx.lineTo(ox + p.trail[j + 2] * scale, oy + p.trail[j + 3] * scale);
           }
-          ctx.strokeStyle = rgba(tints[b], strength[b] * (1 - k / TRAIL) * 0.9);
+          ctx.strokeStyle = rgba(tint, (0.55 + 0.45 * b / (BUCKETS - 1)) * (1 - k / TRAIL) * 0.9);
           ctx.stroke();
         }
       }
@@ -149,7 +163,7 @@
       ctx.fillStyle = COLOR.page;
       ctx.fill();
       ctx.lineWidth = 2;
-      ctx.strokeStyle = rgba(COLOR.amber, 0.9);
+      ctx.strokeStyle = rgba(accent('warm'), 0.9);
       ctx.stroke();
     }
 
@@ -166,7 +180,7 @@
     for (var warm = 0; warm < 60; warm++) {
       for (var i = 0; i < particles.length; i++) advance(particles[i], 0.016, warm * 0.016);
     }
-    if (REDUCED) { step(0.016, 0.64); return; }
+    if (REDUCED) { step(0.016, 0.64); onColormap(draw); return; }
     animate(view.canvas, step);
   }
 
@@ -244,7 +258,7 @@
         curve(ghosts[g]);
       }
       ctx.lineWidth = 2;
-      ctx.strokeStyle = rgba(COLOR.teal, 1);
+      ctx.strokeStyle = rgba(accent('accent'), 1);
       curve(pts);
       ctx.restore();
 
@@ -296,6 +310,7 @@
       hud.classList.add('is-error');
       hud.textContent = 'epoch ' + attempt + '/∞ · loss NaN · a deadline exploded the gradients';
       draw();
+      onColormap(draw);
       return;
     }
     animate(view.canvas, step);
@@ -348,14 +363,15 @@
       ctx.fillRect(0, 0, w, h);
 
       var lo = total > 20 ? quantile(0.025) : 0, hi = total > 20 ? quantile(0.975) : BINS - 1;
+      var peak = Math.max.apply(null, counts) || 1;
       for (i = 0; i < BINS; i++) {
         var bh = barHeight(g, counts[i]);
         if (!bh) continue;
-        ctx.fillStyle = rgba(COLOR.teal, i >= lo && i <= hi ? 0.8 : 0.3);
+        ctx.fillStyle = rgba(ramp(counts[i] / peak), i >= lo && i <= hi ? 0.9 : 0.3);
         ctx.fillRect(g.L + i * bw + 1, g.base - bh, bw - 2, bh);
       }
 
-      ctx.fillStyle = rgba(COLOR.amber, 0.95);
+      ctx.fillStyle = rgba(accent('warm'), 0.95);
       for (i = 0; i < drops.length; i++) {
         ctx.beginPath();
         ctx.arc(g.L + (drops[i].bin + 0.5) * bw, drops[i].y, 2.2, 0, Math.PI * 2);
@@ -371,7 +387,7 @@
 
       // 95% interval bracket
       var x0 = g.L + lo * bw, x1 = g.L + (hi + 1) * bw, by = g.base + 14;
-      ctx.strokeStyle = rgba(COLOR.amber, 0.9);
+      ctx.strokeStyle = rgba(accent('warm'), 0.9);
       ctx.lineWidth = 1.5;
       ctx.beginPath();
       ctx.moveTo(x0, by - 5); ctx.lineTo(x0, by + 5);
@@ -382,7 +398,7 @@
       ctx.font = MONO;
       ctx.textBaseline = 'alphabetic';
       ctx.textAlign = 'center';
-      ctx.fillStyle = rgba(COLOR.amber, 0.95);
+      ctx.fillStyle = rgba(accent('warm'), 0.95);
       ctx.fillText('95% credible interval', (x0 + x1) / 2, by + 18);
 
       ctx.fillStyle = rgba(COLOR.white, 0.5);
@@ -428,6 +444,7 @@
       for (var n = 0; n < TARGET; n++) land(Math.min(BINS - 1, Math.floor(sample() * BINS)));
       hud.textContent = 'N = ' + commas(total) + ' samples · 95% CI: [next week, my defense] · width: basically all of it';
       draw();
+      onColormap(draw);
       return;
     }
     animate(view.canvas, step);

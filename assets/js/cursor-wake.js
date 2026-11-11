@@ -12,6 +12,8 @@
   if (mq('(prefers-reduced-motion: reduce)').matches) return;   // respect the OS setting
   if (!mq('(hover: hover) and (pointer: fine)').matches) return; // no mouse, no wake
 
+  // Defaults; the colormap switcher (assets/js/colormap.js) overrides the two
+  // trail colours when it is loaded.
   var TEAL = '70, 222, 230', AMBER = '255, 200, 87', ICE = '225, 250, 252';
 
   var TRAIL = 14;            // points remembered per dye particle
@@ -215,12 +217,14 @@
         hy = p.trail[n * 2 + 1];
       }
     }
+    var cm = window.Colormap;
+    var tints = [cm ? cm.rgb('glow') : TEAL, cm ? cm.rgb('warm') : AMBER];
     for (var r = 0; r < 2; r++) {
       for (k = 0; k < TRAIL; k++) {
         if (!paths[r][k]) continue;
         var strength = 1 - k / TRAIL;
         ctx.lineWidth = 0.6 + 1.3 * strength;
-        ctx.strokeStyle = 'rgba(' + (r ? AMBER : TEAL) + ', ' + (0.75 * strength).toFixed(3) + ')';
+        ctx.strokeStyle = 'rgba(' + tints[r] + ', ' + (0.75 * strength).toFixed(3) + ')';
         ctx.stroke(paths[r][k]);
       }
     }

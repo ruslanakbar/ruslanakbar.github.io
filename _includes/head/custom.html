@@ -1,5 +1,13 @@
 <!-- start custom head snippets -->
 
+<!-- colormap switcher: accent colours as CSS variables + the control itself.
+     The script is deliberately not deferred so a saved colormap applies before first paint.
+     Set `colormap_switcher: false` in _config.yml to remove the control. -->
+<link rel="stylesheet" href="{{ '/assets/css/colormap.css' | relative_url }}">
+{% unless site.colormap_switcher == false %}
+<script src="{{ '/assets/js/colormap.js' | relative_url }}"></script>
+{% endunless %}
+
 <!-- styles for the "in progress" placeholder pages (see _includes/wip.html) -->
 <link rel="stylesheet" href="{{ '/assets/css/wip.css' | relative_url }}">
 

@@ -65,6 +65,10 @@ defaults:
 # Set to false to switch it off.
 cursor_wake: true
 
+# Colormap picker in the bottom-right corner (assets/js/colormap.js).
+# Set to false to remove it and keep the default colours.
+colormap_switcher: true
+
 # ===============================
 # Markdown & syntax highlighting
 # ===============================
