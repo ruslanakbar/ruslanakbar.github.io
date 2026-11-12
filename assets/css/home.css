@@ -352,7 +352,7 @@
   50% { opacity: 0.35; transform: scale(0.7); }
 }
 
-.home .home__now-text { max-width: 34em; font-size: 1.05em; text-wrap: pretty; }
+.home .home__now-text { max-width: 40em; font-size: 1.05em; text-wrap: balance; }
 
 .home .home__topics {
   display: flex;
