@@ -46,6 +46,23 @@ author:
   linkedin: ruslanakbarzade
 
 # ===============================
+# Identity data for search engines
+# ===============================
+# Not shown on the site. Tells Google who the site belongs to, other spellings
+# of the name, and which profiles elsewhere are the same person
+# (see _includes/schema.html). LinkedIn and GitHub come from `author` above.
+
+identity:
+  alternate_names:
+    - "Ruslan Akbarzade"
+  job_title: "PhD student in Mechanical Engineering"
+  organization: "Louisiana State University"
+  organization_url: "https://www.lsu.edu"
+  # Other profiles that are you: add full addresses here, for example a
+  # Google Scholar or ORCID page.
+  profiles: []
+
+# ===============================
 # Defaults (page layout)
 # ===============================
 

@@ -1,0 +1,47 @@
+{%- comment -%}
+  Identity data for search engines (schema.org "Person", read by Google).
+  It states who this site belongs to, other spellings of the name, and which
+  profiles elsewhere are the same person. Nothing here is visible on the page.
+
+  This file replaces the theme's own _includes/schema.html, which only gives
+  the name. The values come from `author:` and `identity:` in _config.yml.
+{%- endcomment -%}
+{%- assign identity = site.identity -%}
+{%- assign profiles = "" | split: "" -%}
+{%- if site.author.linkedin -%}
+  {%- assign profile = "https://www.linkedin.com/in/" | append: site.author.linkedin -%}
+  {%- assign profiles = profiles | push: profile -%}
+{%- endif -%}
+{%- if site.author.github -%}
+  {%- assign profile = "https://github.com/" | append: site.author.github -%}
+  {%- assign profiles = profiles | push: profile -%}
+{%- endif -%}
+{%- for profile in identity.profiles -%}
+  {%- assign profiles = profiles | push: profile -%}
+{%- endfor -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": {{ '/#person' | absolute_url | jsonify }},
+  "name": {{ site.author.name | default: site.name | jsonify }},
+  {%- if identity.alternate_names and identity.alternate_names.size > 0 %}
+  "alternateName": {{ identity.alternate_names | jsonify }},
+  {%- endif %}
+  "url": {{ '/' | absolute_url | jsonify }},
+  {%- if site.author.avatar %}
+  "image": {{ site.author.avatar | absolute_url | jsonify }},
+  {%- endif %}
+  {%- if identity.job_title %}
+  "jobTitle": {{ identity.job_title | jsonify }},
+  {%- endif %}
+  {%- if identity.organization %}
+  "affiliation": {
+    "@type": "CollegeOrUniversity",
+    "name": {{ identity.organization | jsonify }}{% if identity.organization_url %},
+    "url": {{ identity.organization_url | jsonify }}{% endif %}
+  },
+  {%- endif %}
+  "sameAs": {{ profiles | jsonify }}
+}
+</script>
