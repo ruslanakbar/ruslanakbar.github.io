@@ -31,6 +31,9 @@ home: true
   <section class="home__about">
     {% for paragraph in home.intro %}{{ paragraph | markdownify }}{% endfor %}
     <p class="home__facts">
+      {% if site.identity.lab.name %}
+      <a href="{{ site.identity.lab.url }}">{{ site.identity.lab.name }}</a>
+      {% endif %}
       <span>{{ site.author.employer }}</span>
       <span>{{ site.author.location }}</span>
       {% comment %} Other spellings of the name, from `identity.alternate_names` in _config.yml. {% endcomment %}

@@ -42,6 +42,13 @@
     "url": {{ identity.organization_url | jsonify }}{% endif %}
   },
   {%- endif %}
+  {%- if identity.lab.name %}
+  "memberOf": {
+    "@type": "Organization",
+    "name": {{ identity.lab.name | jsonify }}{% if identity.lab.url %},
+    "url": {{ identity.lab.url | jsonify }}{% endif %}
+  },
+  {%- endif %}
   "sameAs": {{ profiles | jsonify }}
 }
 </script>

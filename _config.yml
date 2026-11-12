@@ -58,6 +58,10 @@ identity:
   job_title: "PhD student in Mechanical Engineering"
   organization: "Louisiana State University"
   organization_url: "https://www.lsu.edu"
+  # Research group. Shown as a link in the details line on the home page.
+  lab:
+    name: "DMO Lab"
+    url: "https://dmo-lab.com/"
   # Other profiles that are you: add full addresses here, for example a
   # Google Scholar or ORCID page.
   profiles: []
