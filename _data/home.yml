@@ -79,8 +79,8 @@ now:
   title: "What I'm working on"
   status: "Research in progress"
   text: >
-    Biomass fast pyrolysis and multiphysics reacting flows, studied with
-    reduced-order modeling and physics-informed machine learning.
+    Numerical modeling of biomass fast pyrolysis and multiphysics reacting
+    flows, with physics-based machine learning for reduced-order modeling.
   link: { label: "More on the research page", url: "/research/" }
   topics:
     - "computational fluid dynamics"
