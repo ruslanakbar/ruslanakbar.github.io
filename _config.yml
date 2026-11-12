@@ -3,6 +3,8 @@
 # ===============================
 
 title: Ruslan Akbar
+# The site's public address. Used for the sitemap, canonical links and link previews.
+url: "https://ruslanakbar.github.io"
 name: Ruslan Akbar
 description: >
   PhD student in Mechanical Engineering |
@@ -55,6 +57,11 @@ defaults:
       layout: single
       author_profile: true
       classes: wide
+  # Keep the Google verification file out of the sitemap.
+  - scope:
+      path: "google808f1dd114fc9d08.html"
+    values:
+      sitemap: false
 
 # ===============================
 # Extras
