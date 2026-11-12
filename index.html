@@ -33,6 +33,10 @@ home: true
     <p class="home__facts">
       <span>{{ site.author.employer }}</span>
       <span>{{ site.author.location }}</span>
+      {% comment %} Other spellings of the name, from `identity.alternate_names` in _config.yml. {% endcomment %}
+      {% if site.identity.alternate_names and site.identity.alternate_names.size > 0 %}
+      <span>Also written {{ site.identity.alternate_names | join: " or " }}</span>
+      {% endif %}
     </p>
     <p class="home__links">
       <a class="home__link" href="{{ github_url }}">
