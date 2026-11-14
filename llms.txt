@@ -1,0 +1,33 @@
+---
+# Plain-text summary of this site for AI assistants (see https://llmstxt.org).
+# The words come from _config.yml, so it stays in step with the site.
+layout: null
+permalink: /llms.txt
+sitemap: false
+---
+{%- assign identity = site.identity -%}
+# {{ site.author.name }}
+
+> {{ identity.summary | strip | newline_to_br | strip_newlines | replace: "<br />", " " }}
+
+- Name: {{ site.author.name }}{% if identity.alternate_names.size > 0 %} (also written {{ identity.alternate_names | join: ", " }}){% endif %}
+- Role: {{ identity.job_title }}, {{ identity.organization }}
+{%- if identity.lab.name %}
+- Research group: {{ identity.lab.name }} ({{ identity.lab.url }})
+{%- endif %}
+- Location: {{ site.author.location }}
+- Research topics: {{ identity.knows_about | join: "; " }}
+
+## Profiles
+
+- [Website]({{ '/' | absolute_url }})
+- [LinkedIn](https://www.linkedin.com/in/{{ site.author.linkedin }})
+- [GitHub](https://github.com/{{ site.author.github }})
+{%- for profile in identity.profiles %}
+- <{{ profile }}>
+{%- endfor %}
+
+## Pages on this site
+
+- [Home]({{ '/' | absolute_url }}): introduction and current research
+- [Research]({{ '/research/' | absolute_url }}), [Projects]({{ '/projects/' | absolute_url }}), [Publications]({{ '/publications/' | absolute_url }}), [Teaching]({{ '/teaching/' | absolute_url }}), [CV]({{ '/cv/' | absolute_url }}), [Blog]({{ '/blog/' | absolute_url }}): still being written

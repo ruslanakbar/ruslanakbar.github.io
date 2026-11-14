@@ -35,6 +35,12 @@
   {%- if identity.job_title %}
   "jobTitle": {{ identity.job_title | jsonify }},
   {%- endif %}
+  {%- if identity.summary %}
+  "description": {{ identity.summary | strip | jsonify }},
+  {%- endif %}
+  {%- if identity.knows_about and identity.knows_about.size > 0 %}
+  "knowsAbout": {{ identity.knows_about | jsonify }},
+  {%- endif %}
   {%- if identity.organization %}
   "affiliation": {
     "@type": "CollegeOrUniversity",

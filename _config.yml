@@ -57,6 +57,21 @@ identity:
   alternate_names:
     - "Ruslan Akbarzade"
   job_title: "PhD student in Mechanical Engineering"
+  # A plain third-person summary, for search engines and AI assistants.
+  summary: >
+    Ruslan Akbar (also written Ruslan Akbarzade) is a PhD student in
+    Mechanical Engineering at Louisiana State University and a member of the
+    DMO Lab, working on numerical modeling of biomass fast pyrolysis and
+    multiphysics reacting flows, with physics-based machine learning for
+    reduced-order modeling.
+  # Research topics.
+  knows_about:
+    - "Computational fluid dynamics"
+    - "Biomass fast pyrolysis"
+    - "Multiphysics reacting flows"
+    - "Reduced-order modeling"
+    - "Physics-based machine learning"
+    - "Uncertainty quantification"
   organization: "Louisiana State University"
   organization_url: "https://www.lsu.edu"
   # Research group. Shown as a link in the details line on the home page.
