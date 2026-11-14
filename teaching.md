@@ -1,4 +1,7 @@
 ---
+# Courses to add to this page later (not shown on the site yet):
+#   - ME 2733
+#   - ME 4611
 layout: single
 title: Teaching
 permalink: /teaching/
