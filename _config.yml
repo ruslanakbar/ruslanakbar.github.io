@@ -6,10 +6,11 @@ title: Ruslan Akbar
 # The site's public address. Used for the sitemap, canonical links and link previews.
 url: "https://ruslanakbar.github.io"
 name: Ruslan Akbar
+# Shown under the title in search results and link previews.
 description: >
-  PhD student in Mechanical Engineering |
-  Computational Modeling |
-  CFD • Machine Learning • Uncertainty Quantification
+  Ruslan Akbar (Ruslan Akbarzade) is a PhD student in Mechanical Engineering
+  at LSU, working on numerical modeling of biomass fast pyrolysis and
+  reduced-order models.
 
 # ===============================
 # Theme
