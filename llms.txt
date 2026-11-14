@@ -6,7 +6,7 @@ permalink: /llms.txt
 sitemap: false
 ---
 {%- assign identity = site.identity -%}
-# {{ site.author.name }}
+# {{ site.author.name }}{% if identity.alternate_names.size > 0 %} ({{ identity.alternate_names | join: ", " }}){% endif %}
 
 > {{ identity.summary | strip | newline_to_br | strip_newlines | replace: "<br />", " " }}
 
